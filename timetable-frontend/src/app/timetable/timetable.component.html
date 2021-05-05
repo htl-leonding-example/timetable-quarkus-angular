@@ -1,0 +1,29 @@
+<div class="classSelection">
+  <select [(ngModel)]="classid" (change)="onClassChanged()">
+    <option value=" ">Klasse auswählen...</option>
+    <option *ngFor="let c of classes" [ngValue]="c.id">{{c.id}}</option>
+  </select>
+  <button (click)="save()">save</button>
+</div>
+
+<div>
+  <table border="1">
+    <tr>
+      <th></th>
+      <th *ngFor="let d of dayNames" class="unit">{{d}}</th>
+    </tr>
+
+    <tr *ngFor="let unitNumber of [1,2,3,4,5]">
+      <td>{{unitNumber}}</td>
+      <td *ngFor="let d of dayNames, let i=index" [bgColor]="getColor(getUnit(i, unitNumber))">
+        <div><input [(ngModel)]="getUnit(i, unitNumber).subject" size="5"
+                    (change)="getUnit(i, unitNumber).hasChanged=true" class="unitinput"></div>
+        <div><select [(ngModel)]="getUnit(i, unitNumber).teacher.id" (change)="getUnit(i, unitNumber).hasChanged=true"
+                     class="teacherselect">
+          <option value="0"></option>
+          <option *ngFor="let t of teachers" [ngValue]="t.id">{{t.lastName}}</option>
+        </select></div>
+      </td>
+    </tr>
+  </table>
+</div>

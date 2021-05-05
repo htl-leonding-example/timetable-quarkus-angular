@@ -1,0 +1,23 @@
+.classSelection {
+  margin-bottom: 15px;
+}
+
+th {
+  text-align: center;
+}
+
+td {
+  padding:  5px;
+}
+
+.unit {
+  min-width: 150px;
+}
+
+.unitinput, .teacherselect {
+  min-width: 140px;
+}
+
+.unitinput {
+  background: whitesmoke;
+}

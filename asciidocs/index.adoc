@@ -84,21 +84,21 @@ Basispfad: http://localhost:8080/api/
 |Methode |Pfad |Beschreibung Ereignis
 
 m|GET
-m|teacher/find_all
+m|teacher
 |Abfragen aller Lehrer. +
 Aufsteigend sortiert nach Nachnamen
 
 m|GET
-m|class/find_all
+m|class
 |Abfragen aller Klassen +
 Aufsteigend sortiert nach id
 
 m|GET
-m|unit/find_by_class/<Klasse>
+m|unit/class/<Klasse>
 |Abfragen aller Unterrichtseinheiten der übergebenen Klasse
 
-m|PUT
-m|unit/save
+m|POST
+m|unit
 |Ändern oder Anlegen einer Unterrichtseinheit. +
 Im Body wird die Unterrichtseinheit samt Primärschlüssel (sofern vorhanden) übergeben.
 
