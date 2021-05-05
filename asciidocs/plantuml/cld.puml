@@ -1,0 +1,24 @@
+@startuml
+class Schoolclass {
+  id: Long
+  room: String
+}
+
+class Teacher {
+  id: Long
+  fistName: String
+  lastName: String
+  room: String
+}
+
+class Unit {
+  id: Long
+  day: int;
+  unit: int
+  subject: String
+}
+
+Unit "*" --left--> "1" Teacher: teacher >
+Unit "*" --right--> "1" Schoolclass: schoolclass >
+
+@enduml

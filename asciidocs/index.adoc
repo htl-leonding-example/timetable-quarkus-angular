@@ -65,6 +65,12 @@ Die serverseitigen Entitätsklassen sind bereits leer angelegt. Die Attribute de
 ** Referenz auf den unterrichtenden Lehrer
 ** Referenz auf die Schulklasse
 
+.CLD
+[plantuml, format="png"]
+----
+include::plantuml/cld.puml[]
+----
+
 Achten Sie auf eine *saubere Schichtentrennung* bei der Umsetzung.
 
 Beim *Serverstart* soll die Datenbank automatisch mit *Stammdaten zum Testen befüllt* werden. Einige Testdatensätze finden Sie in der Datei import.sql.
