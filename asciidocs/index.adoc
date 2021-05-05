@@ -1,0 +1,140 @@
+= Übung Quarkus / Angular - Stundenplan
+:author: Thomas W. Stütz, credits to H. Lackinger and G.Aistleitner
+:revnumber: 1.0.0
+:revdate: 2021-05-05
+:revremark: NVS 4th/5th grade HTL Leonding Vocational College
+:encoding: utf-8
+:experimental:
+ifndef::imagesdir[:imagesdir: images]
+//:toc-placement!:  // prevents the generation of the doc at this position, so it can be printed afterwards
+:source-highlighter: rouge
+:sourcedir: ../src/main/java
+:icons: font
+:sectnums:    // Nummerierung der Überschriften / section numbering
+:toc: left
+:toclevels: 5  // this instructions MUST set after :toc:
+:linkattr:  // to be sure to process ", window="_blank""
+
+//Need this blank line after ifdef, don't know why...
+ifdef::backend-html5[]
+
+////
+// https://fontawesome.com/v4.7.0/icons/
+icon:file-text-o[link=https://raw.githubusercontent.com/htl-leonding-college/angular-lecture-notes/master/asciidocs/{docname}.adoc] ‏ ‏ ‎
+icon:github-square[link=https://github.com/htl-leonding-college/angular-lecture-notes] ‏ ‏ ‎
+icon:home[link=https://htl-leonding-college.github.io/angular-lecture-notes]
+endif::backend-html5[]
+////
+
+// print the toc here (not at the default position)
+//toc::[]
+
+
+== Allgemeines
+
+Implementieren Sie eine Webanwendung, die sowohl aus einem Server als auch aus einem Client besteht. Als Serverframework wird Quarkus in aktueller Version eingesetzt, der Client soll in Angular implementiert werden.
+Für den Server wird ein Ausgangstemplate bereitgestellt, indem die wichtigsten Konfigurationen bereits durchgeführt worden sind (zB Einfügen der Extensions).
+Ein generiertes, leeres Angular-Projekt finden Sie in der Angular-Testumgebung.
+
+Die Schnittstelle zwischen Client und Server soll als REST-Schnittstelle ausgeführt sein.
+
+== Inhaltliche Aufgabenstellung
+
+Es ist eine einfache Verwaltung des Stundenplanes einer Schule zu implementieren. Dabei ist nur der Stundenplan eines einzigen Schuljahres zu berücksichtigen. Der Stundenplan für eine gewünschte Klasse soll ausgewählt und dargestellt, verändert und anschließend wieder in der Datenbank gespeichert werden können.
+
+== Aufgabe 1 - Server
+
+Verwenden Sie als Datenbank Derby. Der Datenbankzugriff hat via JPA zu erfolgen. Optional können Sie auch Panache zur Vereinfachung einsetzen.
+Die serverseitigen Entitätsklassen sind bereits leer angelegt. Die Attribute der jeweiligen Klassen lauten wie folgt:
+
+* Ein Lehrer (Teacher) besteht aus:
+** id (long)
+** firstName (String)
+** lastName (String)
+** room (String, z.B. “E48“)
+
+* Eine Schulklasse (*Schoolclass*) besteht aus:
+** id (z.B. “5BHITM“)
+** room (String, z.B. “135“)
+
+* Eine Unterrichtseinheit (*Unit*) besteht aus:
+** id (soll automatisch vergeben werden)
+** day (tagesnummer 1=Montag bis 5 = Freitag)
+** unit (Einheit 1=erste Einheit bis 10=letzte Einheit)
+** subject (Gegenstand z.B. “SEW“)
+** Referenz auf den unterrichtenden Lehrer
+** Referenz auf die Schulklasse
+
+Achten Sie auf eine *saubere Schichtentrennung* bei der Umsetzung.
+
+Beim *Serverstart* soll die Datenbank automatisch mit *Stammdaten zum Testen befüllt* werden. Einige Testdatensätze finden Sie in der Datei import.sql.
+
+Die Rest-Schnittstelle soll folgende Funktionalität abdecken:
+
+Basispfad: http://localhost:8080/api/
+
+[cols="15,25,~"]
+|===
+|Methode |Pfad |Beschreibung Ereignis
+
+m|GET
+m|teacher/find_all
+|Abfragen aller Lehrer. +
+Aufsteigend sortiert nach Nachnamen
+
+m|GET
+m|class/find_all
+|Abfragen aller Klassen +
+Aufsteigend sortiert nach id
+
+m|GET
+m|unit/find_by_class/<Klasse>
+|Abfragen aller Unterrichtseinheiten der übergebenen Klasse
+
+m|PUT
+m|unit/save
+|Ändern oder Anlegen einer Unterrichtseinheit. +
+Im Body wird die Unterrichtseinheit samt Primärschlüssel (sofern vorhanden) übergeben.
+
+m|DELETE
+m|unit/<id>
+|Löscht die Unit mit der übergebenen Id
+
+|===
+
+Falls Ihre Lösung weitere REST-Requests erfordert, kann diese Auflistung auch erweitert werden.
+
+== Aufgabe 2 - Client
+
+Die gezeigten UI-Abbildungen in der Angabe dienen nur der Verdeutlichung der Aufgabenstellung.
+Es steht Ihnen frei, eigene Implementierungen für das Userinterface umzusetzen.
+Inhaltlich müssen die geforderten Funktionalitäten geboten werden.
+
+image:timetable-gui.png[]
+
+Mit Hilfe einer *Select-Box* kann eine in der Datenbank angelegte *Klasse ausgewählt* werden.
+Daraufhin wird der Stundenplan dieser Klasse mit Gegenstand und Lehrer angezeigt.
+Wenn eine andere Klasse ausgewählt wird, wird sofort deren Stundenplan angezeigt.
+
+Eine *Änderung der Lehrer* erfolgt über eine Select-Box, in der alle Lehrer ausgewählt werden können.
+Der Gegenstand (subject) wird in einem freien Textfeld eingegeben.
+Wenn der Benutzer in einer *Einheit etwas ändert* (Lehrer oder Gegenstand), so wird diese Einheit *farblich gekennzeichnet (grün)*.
+Durch Click auf den Button “save“ werden dann alle geänderten Units an den Server übertragen und dort in der DB gespeichert.
+Daraufhin geht die Farbe wieder auf den ursprünglichen Zustand (weiß) zurück.
+
+== Aufgabe 3 - Websockets / SSE
+
+Erweitern Sie Ihr Projekt dahingehend, dass Änderungen, die von anderen Benutzern gespeichert werden, sofort in die Stundenplanansicht aller anderen Benutzer übernommen werden.
+Diese übernommenen Änderungen sollen rot dargestellt werden.
+
+
+
+
+
+
+
+
+
+
+
+
