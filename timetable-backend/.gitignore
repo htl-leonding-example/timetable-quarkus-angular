@@ -1,5 +1,6 @@
 db/
 .asciidoctor/
+*.jar
 
 #Maven
 target/
