@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 public class Unit extends PanacheEntityBase {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     public Long id;
     public int day;
     public int unit;

@@ -17,7 +17,7 @@ import javax.ws.rs.sse.SseEventSink;
 import java.time.Instant;
 import java.util.List;
 
-@Path("/api/unit/")
+@Path("unit")
 @ApplicationScoped
 public class UnitResource {
 
@@ -38,14 +38,13 @@ public class UnitResource {
     UnitRepository unitRepository;
 
     @GET
-    @Path("/findByClass/{classid}")
+    @Path("/class/{classid}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Unit> findByClass(@PathParam("classid") String classid) {
         return unitRepository.find("schoolclass.id=?1", classid).list();
     }
 
     @POST
-    @Path("/save")
     @Consumes(MediaType.APPLICATION_JSON)
     @Transactional
     public Response save(Unit unit) {

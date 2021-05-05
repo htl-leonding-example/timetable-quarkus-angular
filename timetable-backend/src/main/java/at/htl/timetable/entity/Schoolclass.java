@@ -10,8 +10,8 @@ import javax.persistence.Id;
 
 @Entity
 public class Schoolclass extends PanacheEntityBase {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    @Id
+    public String id;
 
     public String room;
 

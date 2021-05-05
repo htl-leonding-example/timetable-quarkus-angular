@@ -1,4 +1,4 @@
-GET http://localhost:8080/api/class/findAll
+GET http://localhost:8080/api/class
 Accept: application/json
 
 ###

@@ -11,14 +11,13 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("/api/teacher")
+@Path("teacher")
 public class TeacherResource {
 
     @Inject
     TeacherRepository teacherRepository;
 
     @GET
-    @Path("/findAll")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Teacher> findAll() {
         return teacherRepository.findAll(Sort.by("lastname")).list();

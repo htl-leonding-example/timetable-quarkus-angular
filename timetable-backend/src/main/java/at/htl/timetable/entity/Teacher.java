@@ -10,7 +10,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Teacher extends PanacheEntityBase {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     public Long id;
     public String firstName;
     public String lastName;

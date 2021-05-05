@@ -4,7 +4,7 @@ Content-Type: application/json
 {}
 
 ###
-POST http://localhost:8080/api/unit/save
+POST http://localhost:8080/api/unit
 Content-Type: application/json
 
 {
@@ -22,7 +22,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8080/api/unit/findByClass/5BHITM
+GET http://localhost:8080/api/unit/class/5BHITM
 Accept: application/json
 
 ###
