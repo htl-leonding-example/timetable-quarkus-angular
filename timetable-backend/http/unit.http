@@ -1,0 +1,28 @@
+POST http://localhost:8080/api/unit/sse
+Content-Type: application/json
+
+{}
+
+###
+POST http://localhost:8080/api/unit/save
+Content-Type: application/json
+
+{
+    "id": 1002,
+    "day": 1,
+    "schoolclass": {
+      "id": "5BHITM"
+    },
+    "subject": "ITP",
+    "teacher": {
+      "id": 1000
+    },
+    "unit": 3,
+    "hasChanged": true
+}
+
+###
+GET http://localhost:8080/api/unit/findByClass/5BHITM
+Accept: application/json
+
+###
