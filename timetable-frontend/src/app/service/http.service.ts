@@ -25,7 +25,7 @@ export class HttpService {
   }
 
   public getUnitsPerClass(classid: string): Observable<Unit[]> {
-    return this.http.get<Unit[]>(this.SERVER + 'unit/class' + classid);
+    return this.http.get<Unit[]>(this.SERVER + 'unit/class/' + classid);
   }
 
   public saveUnit(unit: Unit): Observable<any> {
