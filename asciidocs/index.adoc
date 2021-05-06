@@ -73,7 +73,15 @@ include::plantuml/cld.puml[]
 
 Achten Sie auf eine *saubere Schichtentrennung* bei der Umsetzung.
 
-Beim *Serverstart* soll die Datenbank automatisch mit *Stammdaten zum Testen befüllt* werden. Einige Testdatensätze finden Sie in der Datei import.sql.
+Beim *Serverstart* soll die Datenbank automatisch mit *Stammdaten zum Testen befüllt* werden.
+Einige Testdatensätze finden Sie in der Datei import.sql.
+
+++++
+<p>
+<a href="import.sql">import.sql</a>
+</p>
+++++
+
 
 Die Rest-Schnittstelle soll folgende Funktionalität abdecken:
 

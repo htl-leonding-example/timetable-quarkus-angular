@@ -96,7 +96,7 @@ export class TimetableComponent implements OnInit, OnDestroy {
 
   unitChanged(unit: Unit): void {
     for (const u of this.units) {
-      if (unit.schoolclass.id == u.schoolclass.id && unit.day === u.day && unit.unit === u.unit
+      if (unit.schoolclass.id === u.schoolclass.id && unit.day === u.day && unit.unit === u.unit
         && (unit.subject !== u.subject || unit.teacher.id !== u.teacher.id)) {
         u.externallyChanged = true;
         u.teacher = unit.teacher;

@@ -29,6 +29,7 @@ export class HttpService {
   }
 
   public saveUnit(unit: Unit): Observable<any> {
+    console.log(this.SERVER + 'unit' + JSON.stringify(unit));
     return this.http.post(this.SERVER + 'unit', unit);
   }
 
